@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: transmission.analbeard.com
+  namespace: dnsendpoints
+spec:
+  endpoints:
+  - dnsName: transmission.analbeard.com
+    recordTTL: 180
+    recordType: CNAME
+    targets:
+    - lab.a7d.dev

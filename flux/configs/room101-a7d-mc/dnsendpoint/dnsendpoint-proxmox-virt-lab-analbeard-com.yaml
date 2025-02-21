@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: proxmox.virt.lab.analbeard.com
+  namespace: dnsendpoints
+spec:
+  endpoints:
+  - dnsName: proxmox.virt.lab.analbeard.com
+    recordTTL: 180
+    recordType: CNAME
+    targets:
+    - lab.a7d.dev

@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: n8n.a7d.dev
+  namespace: dnsendpoints
+spec:
+  endpoints:
+  - dnsName: n8n.a7d.dev
+    recordTTL: 180
+    recordType: CNAME
+    targets:
+    - lab.a7d.dev
