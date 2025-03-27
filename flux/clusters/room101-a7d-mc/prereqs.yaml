@@ -2,12 +2,9 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: homelab-clusters-addons-configs
+  name: homelab-clusters-addons-prereqs
   namespace: cluster-room101-a7d-mc
 spec:
-  dependsOn:
-    - name: homelab-clusters-addons-prereqs
-      namespace: cluster-room101-a7d-mc
   interval: 1h
   retryInterval: 1m
   timeout: 5m
@@ -15,12 +12,7 @@ spec:
     kind: GitRepository
     name: homelab-clusters-addons
     namespace: flux-system
-  path: ./flux/configs/room101-a7d-mc
+  path: ./flux/clusters/room101-a7d-mc/prereqs
   prune: true
   wait: true
   suspend: true
-  postBuild:
-    substituteFrom:
-      - kind: ConfigMap
-        name: homelab-clusters-addons-vars
-        optional: false

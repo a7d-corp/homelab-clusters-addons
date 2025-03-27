@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homelab-clusters-addons-vars
+  namespace: cluster-room101-a7d-mc
+data:
+  EXTERNAL_FQDN_TARGET: lab.a7d.dev
