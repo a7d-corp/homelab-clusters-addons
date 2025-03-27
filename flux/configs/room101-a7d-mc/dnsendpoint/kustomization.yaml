@@ -7,7 +7,10 @@ resources:
 - dnsendpoint-hass-analbeard-com.yaml
 - dnsendpoint-hoarder-a7d-dev.yaml
 - dnsendpoint-n8n-a7d-dev.yaml
+- dnsendpoint-opnsense-int-a7d-dev.yaml
+- dnsendpoint-opnsense-int-analbeard-com.yaml
 - dnsendpoint-plex-analbeard-com.yaml
+- dnsendpoint-proxmox-proxy-int-a7d-dev.yaml
 - dnsendpoint-proxmox-virt-lab-analbeard-com.yaml
 - dnsendpoint-rainloop-analbeard-com.yaml
 - dnsendpoint-status-a7d-dev.yaml

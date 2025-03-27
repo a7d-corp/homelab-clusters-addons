@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: opnsense.int.a7d.dev
+  namespace: dnsendpoints
+spec:
+  endpoints:
+  - dnsName: opnsense.int.a7d.dev
+    recordTTL: 180
+    recordType: CNAME
+    targets:
+    - proxmox-proxy.int.a7d.dev

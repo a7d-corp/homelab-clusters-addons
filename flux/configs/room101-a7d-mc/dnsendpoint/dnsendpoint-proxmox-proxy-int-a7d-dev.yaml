@@ -1,0 +1,12 @@
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: proxmox-proxy.int.a7d.dev
+  namespace: dnsendpoints
+spec:
+  endpoints:
+  - dnsName: proxmox-proxy.int.a7d.dev
+    recordTTL: 180
+    recordType: A
+    targets:
+    - 172.25.0.10
