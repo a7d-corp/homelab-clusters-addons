@@ -9,4 +9,4 @@ spec:
     recordTTL: 180
     recordType: CNAME
     targets:
-    - lab.a7d.dev
+    - ${EXTERNAL_FQDN_TARGET}
