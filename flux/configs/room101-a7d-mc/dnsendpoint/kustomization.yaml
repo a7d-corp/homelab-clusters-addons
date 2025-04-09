@@ -8,6 +8,7 @@ resources:
 - dnsendpoint-cname-hass-analbeard-com.yaml
 - dnsendpoint-cname-hoarder-a7d-dev.yaml
 - dnsendpoint-cname-n8n-a7d-dev.yaml
+- dnsendpoint-cname-ntfy-int-a7d-dev.yaml
 - dnsendpoint-cname-opnsense-int-a7d-dev.yaml
 - dnsendpoint-cname-opnsense-int-analbeard-com.yaml
 - dnsendpoint-cname-plex-analbeard-com.yaml
