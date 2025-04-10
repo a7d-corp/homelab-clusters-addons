@@ -15,4 +15,4 @@ spec:
   path: ./flux/clusters/room101-a7d-mc/prereqs
   prune: true
   wait: true
-  suspend: true
+  suspend: false

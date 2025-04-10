@@ -18,7 +18,7 @@ spec:
   path: ./flux/configs/room101-a7d-mc
   prune: true
   wait: true
-  suspend: true
+  suspend: false
   postBuild:
     substituteFrom:
       - kind: ConfigMap
