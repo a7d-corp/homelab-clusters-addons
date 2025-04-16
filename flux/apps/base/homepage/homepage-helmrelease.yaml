@@ -1,0 +1,149 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: homepage
+  namespace: homepage
+spec:
+  chart:
+    spec:
+      chart: homepage
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: jameswynn
+      version: '>=2.0.0 <3.0.0'
+  interval: 10m0s
+  releaseName: homepage
+  valuesFrom:
+    - kind: Secret
+      name: homepage-values
+      optional: false
+      valuesKey: values.yaml
+  values:
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: "nginx"
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt"
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        hosts:
+          - host: homepage.a7d.dev
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - homepage.a7d.dev
+            secretName: homepage-tls
+    config:
+      bookmarks: []
+      bookmarksString: |
+        - INFRA:
+          - OPNSense:
+            - abbr: OPN
+              href: https://opnsense.int.a7d.dev/
+          - Unifi:
+            - abbr: UF
+              href: https://unifi.analbeard.com/
+          - Node Red:
+            - abbr: NR
+              href: https://node-red.int.analbeard.com/
+          - Sausage Cloud:
+            - abbr: SC
+              href: https://compute.sausage.cloud/
+          - Rainloop:
+            - abbr: RL
+              href: https://rainloop.analbeard.com/
+          - Gitea:
+            - abbr: GT
+              href: https://gitea.analbeard.com/
+          - Invoice Ninja:
+            - abbr: IN
+              href: https://accounting.a7d.dev/dashboard
+        - MEDIA:
+          - HDBits:
+            - abbr: HD
+              href: https://hdbits.org/
+          - Transmission:
+            - abbr: TM
+              href: https://transmission.analbeard.com/
+          - Hacker News:
+            - abbr: HN
+              href: https://hn.premii.com/
+          - The Guardian:
+            - abbr: GD
+              href: https://www.theguardian.com/uk
+          - Pexels:
+            - abbr: PX
+              href: https://www.pexels.com/
+          - Unsplash:
+            - abbr: UN
+              href: https://unsplash.com/new
+        - WORK:
+          - Gmail:
+            - abbr: GM
+              href: https://mail.google.com/mail/u/1/#inbox
+          - Calendar:
+            - abbr: GC
+              href: https://calendar.google.com/calendar?tab=mc&authuser=1
+          - Intranet:
+            - abbr: IN
+              href: https://intranet.giantswarm.io/docs/
+          - Personio:
+            - abbr: PS
+              href: https://giant-swarm.personio.de/login/index
+          - GitHub (team board):
+            - abbr: GH
+              href: "https://github.com/orgs/giantswarm/projects/273/views/50?sliceBy%5Bvalue%5D=Rocket+%F0%9F%9A%80"
+          - AWS Console:
+            - abbr: AC
+              href: https://giantswarm.signin.aws.amazon.com/console
+          - AWS China Console:
+            - abbr: ACC
+              href: https://306934455918.signin.amazonaws.cn/console
+          - Azure Portal:
+            - abbr: AZ
+              href: https://portal.azure.com/#home
+      services: []
+      servicesString: |
+        - Home:
+          - Home Assistant:
+              href: https://hass.analbeard.com
+              icon: mdi-home-automation
+          - Frigate:
+              href: https://frigate.analbeard.com
+              icon: mdi-cctv
+          - Proxmox:
+              href: https://proxmox.virt.lab.analbeard.com
+              icon: mdi-server-outline
+        - Services:
+          - Plex:
+              href: https://plex.analbeard.com
+              icon: mdi-plex
+          - Nextcloud:
+              href: https://nextcloud.a7d.dev
+              icon: mdi-file-multiple
+          - Transmission:
+              href: https://transmission.analbeard.com
+              icon: mdi-car-shift-pattern
+      settingsString: |
+        title: Homepage
+        headerStyle: boxed
+      widgets:
+        - datetime:
+            text_size: xl
+            format:
+              hour12: false
+              timeStyle: short
+              hourCyle: 23
+        - greeting:
+            text_size: 3xl
+            text: Hello, Simon
+        - openweathermap:
+            units: metric
+            provider: openweathermap
+            cache: 10
+            format:
+              maximumFractionDigits: 1
