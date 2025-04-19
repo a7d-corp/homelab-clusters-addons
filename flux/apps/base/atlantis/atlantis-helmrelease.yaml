@@ -1,0 +1,78 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: atlantis
+  namespace: atlantis
+spec:
+  chart:
+    spec:
+      chart: atlantis
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: runatlantis
+      version: '>=5.0.0 <6.0.0'
+  interval: 10m0s
+  releaseName: atlantis
+  values:
+    orgAllowlist: "github.com/a7d-corp/*,github.com/glitchcrab/*,github.com/simonweald/*"
+    github:
+      user: glitchcrab-bot
+    repoConfig: |
+      repos:
+        - id: /.*/
+          allowed_overrides: [workflow]
+          allow_custom_workflows: true
+    ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        external-dns.alpha.kubernetes.io/hostname: atlantis.lab.analbeard.com
+        external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.room101-a7d-mc.lab.analbeard.com/oauth2/start
+        nginx.ingress.kubernetes.io/auth-url: https://oauth2-proxy.room101-a7d-mc.lab.analbeard.com/oauth2/auth
+        nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      enabled: true
+      host: atlantis.lab.analbeard.com
+      ingressClassName: nginx
+      path: /
+      pathType: Prefix
+      tls:
+      - hosts:
+        - atlantis.lab.analbeard.com
+        secretName: atlantis-tls
+    webhook_ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        external-dns.alpha.kubernetes.io/hostname: webhook.atlantis.lab.analbeard.com
+        external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: HTTP
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      host: webhook.atlantis.lab.analbeard.com
+      path: /
+      pathType: Prefix
+      tls:
+      - hosts:
+        - webhook.atlantis.lab.analbeard.com
+        secretName: atlantis-webhook-tls
+    volumeClaim:
+      storageClassName: "truenas-nfs"
+    vcsSecretName: atlantis-vcs-credentials
+    environmentSecrets:
+    - name: GITHUB_TOKEN
+      secretKeyRef:
+        key: github_token
+        name: atlantis-vcs-credentials # github token
+    extraVolumeMounts:
+    - mountPath: /minio-backend-config
+      name: minio-backend-config
+    extraVolumes:
+    - name: minio-backend-config
+      secret:
+        secretName: atlantis-remote-credentials # credentials for remote state storage
+    loadEnvFromSecrets:
+    - atlantis-vault-credentials # Vault token

@@ -1,6 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - ../base/atlantis/
+  - atlantis/namespace-atlantis.yaml
+  - atlantis/secret-atlantis-remote-credentials.yaml
+  - atlantis/secret-atlantis-vault-credentials.yaml
+  - atlantis/secret-atlantis-vcs-credentials.yaml
+  - ../base/homepage/
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
-  - ../base/homepage/
