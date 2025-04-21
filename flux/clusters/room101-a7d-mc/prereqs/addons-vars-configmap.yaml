@@ -5,3 +5,8 @@ metadata:
   namespace: cluster-room101-a7d-mc
 data:
   EXTERNAL_FQDN_TARGET: lab.a7d.dev
+  FQDN_BASE: room101-a7d-mc.lab.a7d.dev
+  OAUTH_A7D_START: "https://oauth2-proxy.room101-a7d-mc.lab.a7d.dev/oauth2/start"
+  OAUTH_A7D_AUTH: "https://oauth2-proxy.room101-a7d-mc.lab.a7d.dev/oauth2/auth"
+  INGRESS_CLASS: nginx
+  STORAGE_CLASS: truenas-nfs
