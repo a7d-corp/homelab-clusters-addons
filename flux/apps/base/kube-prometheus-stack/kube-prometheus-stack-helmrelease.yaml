@@ -1,0 +1,111 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: prometheus
+spec:
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+      version: '>=70.7.0 <71.0.0'
+  interval: 10m0s
+  releaseName: kube-prometheus-stack
+  values:
+    crds:
+      upgradeJob:
+        enabled: true
+    defaultRules:
+      create: true
+      rules:
+        kubeProxy: false
+        windows: false
+    alertmanager:
+      alertmanagerSpec:
+        storage:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ${STORAGE_CLASS}
+              resources:
+                requests:
+                  storage: 20Gi
+      ingress:
+        enabled: true
+        ingressClassName: ${INGRESS_CLASS}
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: alertmanager.${FQDN_BASE}
+          external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-signin: ${OAUTH_A7D_START}
+          nginx.ingress.kubernetes.io/auth-url: ${OAUTH_A7D_AUTH}
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        hosts:
+          - alertmanager.${FQDN_BASE}
+        paths:
+          - /
+        pathType: ImplementationSpecific
+        tls:
+          - secretName: alertmanager-general-tls
+            hosts:
+              - alertmanager.${FQDN_BASE}
+    grafana:
+      defaultDashboardsTimezone: "Europe/London"
+      ingress:
+        enabled: true
+        ingressClassName: ${INGRESS_CLASS}
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: grafana.${FQDN_BASE}
+          external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-signin: ${OAUTH_A7D_START}
+          nginx.ingress.kubernetes.io/auth-url: ${OAUTH_A7D_AUTH}
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        hosts:
+          - grafana.${FQDN_BASE}
+        path: /
+        tls:
+          - secretName: grafana-general-tls
+            hosts:
+              - grafana.${FQDN_BASE}
+    kubeProxy:
+      enabled: false
+    nodeExporter:
+      operatingSystems:
+        aix:
+          enabled: false
+        darwin:
+          enabled: false
+    prometheus:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: ${STORAGE_CLASS}
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi
+      ingress:
+        enabled: true
+        ingressClassName: ${INGRESS_CLASS}
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: prometheus.${FQDN_BASE}
+          external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/auth-signin: ${OAUTH_A7D_START}
+          nginx.ingress.kubernetes.io/auth-url: ${OAUTH_A7D_AUTH}
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        hosts:
+          - prometheus.${FQDN_BASE}
+        paths:
+          - /
+        pathType: ImplementationSpecific
+        tls:
+          - secretName: prometheus-general-tls
+            hosts:
+              - prometheus.${FQDN_BASE}
