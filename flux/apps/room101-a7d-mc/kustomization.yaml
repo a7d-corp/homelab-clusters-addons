@@ -6,6 +6,7 @@ resources:
   - atlantis/secret-atlantis-remote-credentials.yaml
   - atlantis/secret-atlantis-vault-credentials.yaml
   - atlantis/secret-atlantis-vcs-credentials.yaml
+  - ../base/descheduler/
   - ../base/echo-server/
   - ../base/homepage/
   - homepage/homepage-namespace.yaml
