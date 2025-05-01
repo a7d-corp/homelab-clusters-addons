@@ -12,3 +12,4 @@ resources:
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
   - ../base/kube-prometheus-stack/
+  - ../base/reflector/
