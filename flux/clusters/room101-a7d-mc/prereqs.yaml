@@ -13,6 +13,10 @@ spec:
     name: homelab-clusters-addons
     namespace: flux-system
   path: ./flux/clusters/room101-a7d-mc/prereqs
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age-addons
   prune: true
   wait: true
   suspend: false
