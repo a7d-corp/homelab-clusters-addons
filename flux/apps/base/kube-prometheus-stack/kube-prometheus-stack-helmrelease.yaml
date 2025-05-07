@@ -33,6 +33,7 @@ spec:
                 requests:
                   storage: 20Gi
       config:
+        inhibit_rules: []
         receivers:
         - name: "pagerduty"
           service_key: ${ALERTMANAGER_PAGERDUTY_INTEGRATION_KEY}
