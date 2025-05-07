@@ -28,3 +28,6 @@ spec:
       - kind: ConfigMap
         name: homelab-clusters-addons-vars
         optional: false
+      - kind: Secret
+        name: homelab-clusters-addons-secrets
+        optional: false

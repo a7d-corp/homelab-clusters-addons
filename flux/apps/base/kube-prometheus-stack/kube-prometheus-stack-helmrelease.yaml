@@ -32,6 +32,14 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
+      config:
+        receivers:
+        - name: "pagerduty"
+          service_key: ${ALERTMANAGER_PAGERDUTY_INTEGRATION_KEY}
+          url: "https://events.eu.pagerduty.com/generic/2010-04-15/create_event.json"
+        route:
+          group_by: ['namespace']
+          receiver: pagerduty
       ingress:
         enabled: true
         ingressClassName: ${INGRESS_CLASS}
