@@ -33,7 +33,6 @@ spec:
                 requests:
                   storage: 20Gi
       config:
-        inhibit_rules: []
         receivers:
           - name: "pagerduty"
             pagerduty_configs:
