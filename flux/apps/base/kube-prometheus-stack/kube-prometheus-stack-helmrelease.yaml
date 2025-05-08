@@ -41,6 +41,7 @@ spec:
                 url: "https://events.eu.pagerduty.com/generic/2010-04-15/create_event.json"
         route:
           group_by: ['alertname']
+          receiver: pagerduty
           routes:
             - receiver: pagerduty
       ingress:
