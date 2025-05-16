@@ -72,8 +72,11 @@ spec:
           client_id: $__env{GRAFANA_GITHUB_CLIENT_ID}
           client_secret: $__env{GRAFANA_GITHUB_CLIENT_SECRET}
           allowed_organizations: ['a7d-corp', 'simonweald']
-          role_attribute_path: [login=='glitchcrab'][0] && 'GrafanaAdmin' || 'Viewer'
+          role_attribute_path: "[login=='glitchcrab'][0] && 'GrafanaAdmin' || 'Viewer'"
           allow_sign_up: false
+          auth_url: https://github.com/login/oauth/authorize
+          token_url: https://github.com/login/oauth/access_token
+          api_url: https://api.github.com/user
       ingress:
         enabled: true
         ingressClassName: ${INGRESS_CLASS}
