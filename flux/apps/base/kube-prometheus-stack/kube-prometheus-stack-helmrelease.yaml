@@ -66,6 +66,8 @@ spec:
     grafana:
       defaultDashboardsTimezone: "Europe/London"
       envFromSecret: grafana-oauth-secrets
+      admin:
+        existingSecret: grafana-admin-credentials
       grafana.ini:
         auth.github:
           enabled: true

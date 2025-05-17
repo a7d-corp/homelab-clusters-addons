@@ -12,5 +12,6 @@ resources:
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
   - ../base/kube-prometheus-stack/
+  - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
   - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
   - ../base/reflector/
