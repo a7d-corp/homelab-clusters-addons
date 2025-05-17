@@ -4,3 +4,4 @@ resources:
   - kube-prometheus-stack-helmrelease.yaml
   - kube-prometheus-stack-helmrepository.yaml
   - kube-prometheus-stack-namespace.yaml
+  - configs/podmonitor-flux-system.yaml
