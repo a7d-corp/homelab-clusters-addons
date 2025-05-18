@@ -106,6 +106,7 @@ spec:
         darwin:
           enabled: false
     prometheus:
+      podMonitorSelectorNilUsesHelmValues: false
       storageSpec:
         volumeClaimTemplate:
           spec:
