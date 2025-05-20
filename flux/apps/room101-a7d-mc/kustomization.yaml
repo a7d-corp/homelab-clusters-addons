@@ -14,4 +14,6 @@ resources:
   - ../base/kube-prometheus-stack/
   - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
   - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
+  - ../base/metrics-server/
   - ../base/reflector/
+  - ../base/vertical-pod-autoscaler/
