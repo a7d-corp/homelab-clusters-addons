@@ -8,6 +8,7 @@ resources:
   - atlantis/secret-atlantis-vcs-credentials.yaml
   - ../base/descheduler/
   - ../base/echo-server/
+  - ../base/goldilocks/
   - ../base/homepage/
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml

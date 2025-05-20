@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: goldilocks
+  namespace: goldilocks
+spec:
+  chart:
+    spec:
+      chart: goldilocks
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: fairwinds-stable
+      version: 9.0.2
+  interval: 10m0s
+  releaseName: goldilocks
+  values:
+    controller:
+      rbac:
+        enableArgoproj: false
+    dashboard:
+      rbac:
+        enableArgoproj: false
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        annotations:
+          cert-manager.io/cluster-issuer: letsencrypt
+          external-dns.alpha.kubernetes.io/hostname: goldilocks.int.room101-a7d-mc.lab.a7d.dev
+          external-dns.alpha.kubernetes.io/target: ${INTERNAL_FQDN_TARGET}
+          kubernetes.io/tls-acme: "true"
+          nginx.ingress.kubernetes.io/backend-protocol: HTTP
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+        hosts:
+          - host: goldilocks.int.room101-a7d-mc.lab.a7d.dev
+            paths:
+              - path: /
+                type: ImplementationSpecific
+        tls:
+        - secretName: goldilocks-tls
+          hosts:
+           - goldilocks.int.room101-a7d-mc.lab.a7d.dev
