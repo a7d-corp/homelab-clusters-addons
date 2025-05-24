@@ -109,6 +109,12 @@ spec:
       podMonitorNamespaceSelector:
         matchLabels:
           prometheus.io/scrape: "true"
+      podMonitorSelector:
+        matchLabels:
+          prometheus.io/scrape: "true"
+      serviceMonitorSelector:
+        matchLabels:
+          prometheus.io/scrape: "true"
       serviceMonitorNamespaceSelector:
         matchLabels:
           prometheus.io/scrape: "true"
