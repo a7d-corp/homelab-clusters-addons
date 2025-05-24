@@ -18,6 +18,13 @@ spec:
     controller:
       rbac:
         enableArgoproj: false
+        extraRules:
+          - apiGroups:
+            - '*'
+            resources:
+            - '*'
+            verbs:
+            - list
     dashboard:
       rbac:
         enableArgoproj: false
