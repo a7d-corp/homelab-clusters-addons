@@ -106,7 +106,12 @@ spec:
         darwin:
           enabled: false
     prometheus:
-      podMonitorSelectorNilUsesHelmValues: false
+      podMonitorNamespaceSelector:
+        matchLabels:
+          prometheus.io/scrape: "true"
+      serviceMonitorNamespaceSelector:
+        matchLabels:
+          prometheus.io/scrape: "true"
       storageSpec:
         volumeClaimTemplate:
           spec:
