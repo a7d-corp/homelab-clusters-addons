@@ -170,7 +170,7 @@ spec:
                       chart_name: [ status, history, "0", chartName ]
                       chart_app_version: [ status, history, "0", appVersion ]
                       chart_ref_name: [ spec, chartRef, name ]
-                      chart_source_name: [ spec, chart, spec, sourceRef, name ]
+                      chart_source_name: [ spec, chart, sourceRef, name ]
               - groupVersionKind:
                   group: source.toolkit.fluxcd.io
                   version: v1
