@@ -68,6 +68,20 @@ spec:
       envFromSecret: grafana-oauth-secrets
       admin:
         existingSecret: grafana-admin-credentials
+      sidecar:
+        dashboards:
+          enabled: true
+          label: "additional-grafana-dashboard"
+          labelValue: ""
+          searchNamespace: 'monitoring'
+          provider:
+            name: sidecarProvider
+            orgid: 1
+            folder: ''
+            type: file
+            disableDelete: false
+            allowUiUpdates: true
+            foldersFromFilesStructure: false
       grafana.ini:
         auth.github:
           enabled: true
