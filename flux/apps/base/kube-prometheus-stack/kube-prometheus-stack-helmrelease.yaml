@@ -379,26 +379,19 @@ spec:
         darwin:
           enabled: false
     prometheus:
-      podMonitorNamespaceSelector:
-        matchLabels:
-          prometheus.io/scrape: "true"
-      podMonitorSelector:
-        matchLabels:
-          prometheus.io/scrape: "true"
-      serviceMonitorSelector:
-        matchLabels:
-          prometheus.io/scrape: "true"
-      serviceMonitorNamespaceSelector:
-        matchLabels:
-          prometheus.io/scrape: "true"
-      storageSpec:
-        volumeClaimTemplate:
-          spec:
-            storageClassName: ${STORAGE_CLASS}
-            accessModes: ["ReadWriteOnce"]
-            resources:
-              requests:
-                storage: 50Gi
+      prometheusSpec:
+        podMonitorNamespaceSelector: {}
+        podMonitorSelector: {}
+        serviceMonitorSelector: {}
+        serviceMonitorNamespaceSelector: {}
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: ${STORAGE_CLASS}
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 50Gi
       ingress:
         enabled: true
         ingressClassName: ${INGRESS_CLASS}
