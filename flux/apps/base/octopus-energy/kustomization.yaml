@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: octopus-energy
+resources:
+  - octopus-claim-script-secret.yaml
+  - octopus-cronjob.yaml
+  - octopus-energy-namespace.yaml
+  - octopus-reset-cronjob.yaml
+  - octopus-reset-script-secret.yaml
