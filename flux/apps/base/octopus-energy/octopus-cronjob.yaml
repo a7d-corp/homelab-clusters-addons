@@ -1,0 +1,65 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: octopus-claim
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/bash
+            - -c
+            - /claim-script.sh
+            env:
+            - name: OCTOPUS_APIKEY
+              value: ${OCTOPLUS_OCTOPUS_APIKEY}
+            - name: OCTOPUS_ACCOUNT_ID
+              value: ${OCTOPLUS_OCTOPUS_ACCOUNT_ID}
+            - name: NTFY_APIKEY
+              value: ${OCTOPLUS_NTFY_APIKEY}
+            - name: CLOUDFLARE_ZONE
+              value: ${OCTOPLUS_CLOUDFLARE_ZONE}
+            - name: CLOUDFLARE_APIKEY
+              value: ${OCTOPLUS_CLOUDFLARE_APIKEY}
+            image: docker.io/mintel/docker-alpine-bash-curl-jq:2.2.0
+            name: claim
+            resources:
+              limits:
+                cpu: 100m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 64Mi
+            volumeMounts:
+            - mountPath: /claim-script.sh
+              name: claim-script
+              subPath: claim-script.sh
+          initContainers:
+          - command:
+            - /bin/bash
+            - -c
+            - |
+              # Random sleep between 1 and 12 minutes
+              SLEEP=$(shuf -i 30-720 -n 1)
+              echo "Sleeping for $SLEEP seconds"
+              sleep $SLEEP
+              echo "Done sleeping"
+            image: docker.io/mintel/docker-alpine-bash-curl-jq:2.2.0
+            name: sleeper
+            resources:
+              limits:
+                cpu: 100m
+                memory: 100Mi
+              requests:
+                cpu: 10m
+                memory: 25Mi
+          volumes:
+          - name: claim-script
+            secret:
+              defaultMode: 0600
+              secretName: octopus-claim-script
+          restartPolicy: OnFailure
+  schedule: 1/15 5-7 * * *
+  successfulJobsHistoryLimit: 3

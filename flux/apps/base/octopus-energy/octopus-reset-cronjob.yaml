@@ -1,0 +1,42 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: octopus-claim-reset
+spec:
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - command:
+            - /bin/bash
+            - -c
+            - /reset-script.sh
+            env:
+            - name: NTFY_APIKEY
+              value: ${OCTOPLUS_NTFY_APIKEY}
+            - name: CLOUDFLARE_ZONE
+              value: ${OCTOPLUS_CLOUDFLARE_ZONE}
+            - name: CLOUDFLARE_APIKEY
+              value: ${OCTOPLUS_CLOUDFLARE_APIKEY}
+            image: docker.io/mintel/docker-alpine-bash-curl-jq:2.2.0
+            name: reset-claim
+            resources:
+              limits:
+                cpu: 100m
+                memory: 256Mi
+              requests:
+                cpu: 10m
+                memory: 64Mi
+            volumeMounts:
+            - mountPath: /reset-script.sh
+              name: reset-script
+              subPath: reset-script.sh
+          volumes:
+          - name: reset-script
+            secret:
+              defaultMode: 0600
+              secretName: octopus-reset-script
+          restartPolicy: OnFailure
+  schedule: 0 18 * * SUN
+  successfulJobsHistoryLimit: 3
