@@ -11,6 +11,7 @@ resources:
 - dnsendpoint-cname-ntfy-int-a7d-dev.yaml
 - dnsendpoint-cname-opnsense-int-a7d-dev.yaml
 - dnsendpoint-cname-opnsense-int-analbeard-com.yaml
+- dnsendpoint-cname-outline-a7d-dev.yaml
 - dnsendpoint-cname-plex-analbeard-com.yaml
 - dnsendpoint-cname-proxmox-virt-lab-analbeard-com.yaml
 - dnsendpoint-cname-rainloop-analbeard-com.yaml
