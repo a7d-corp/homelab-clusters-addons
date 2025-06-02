@@ -58,7 +58,7 @@ spec:
           volumes:
           - name: claim-script
             secret:
-              defaultMode: 0600
+              defaultMode: 0777
               secretName: octopus-claim-script
           restartPolicy: OnFailure
   schedule: 1/15 5-7 * * *

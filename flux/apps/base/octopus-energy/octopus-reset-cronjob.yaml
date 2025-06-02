@@ -35,7 +35,7 @@ spec:
           volumes:
           - name: reset-script
             secret:
-              defaultMode: 0600
+              defaultMode: 0777
               secretName: octopus-reset-script
           restartPolicy: OnFailure
   schedule: 0 18 * * SUN
