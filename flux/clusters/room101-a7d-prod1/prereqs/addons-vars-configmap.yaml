@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: homelab-clusters-addons-vars
+  namespace: flux-system
+data:
+  EXTERNAL_FQDN_TARGET: lab.a7d.dev
+  INTERNAL_FQDN_TARGET: 172.27.0.94
+  FQDN_BASE: room101-a7d-prod1.lab.a7d.dev
+  OAUTH_A7D_START: "https://oauth2-proxy.room101-a7d-prod1.lab.a7d.dev/oauth2/start"
+  OAUTH_A7D_AUTH: "https://oauth2-proxy.room101-a7d-prod1.lab.a7d.dev/oauth2/auth"
+  INGRESS_CLASS: nginx
+  STORAGE_CLASS: truenas-nfs

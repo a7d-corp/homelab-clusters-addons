@@ -1,0 +1,22 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: homelab-clusters-addons-prereqs
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+  path: ./flux/clusters/room101-a7d-prod1/prereqs
+#  decryption:
+#    provider: sops
+#    secretRef:
+#      name: sops-age-addons
+  prune: true
+  wait: true
+  suspend: false
