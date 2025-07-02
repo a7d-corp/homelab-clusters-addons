@@ -16,3 +16,8 @@ spec:
   prune: true
   wait: true
   suspend: false
+  postBuild:
+    substituteFrom:
+    - kind: ConfigMap
+      name: homelab-clusters-addons-vars
+      optional: false
