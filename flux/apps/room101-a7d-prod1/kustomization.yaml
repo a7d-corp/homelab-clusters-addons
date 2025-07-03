@@ -4,3 +4,4 @@ resources:
   - ../base/descheduler/
   - ../base/echo-server/
   - ../base/reflector/
+  - ../base/tofu-controller/
