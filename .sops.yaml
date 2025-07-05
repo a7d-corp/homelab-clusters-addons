@@ -1,4 +1,9 @@
 ---
 creation_rules:
+# encrypt all secrets in dirs containing room101-a7d-prod1 in the path
+- age: age1wgalq9eqadjxe6ew9r6xptst94rl4n0uhklqn5pm9dcmjh6j0cks8umhnn
+  encrypted_regex: '^(data|stringData|bundle)$'
+  path_regex: .*/room101-a7d-prod1/.*
+# encrypt all secrets which don't match a path_regex below
 - encrypted_regex: '^(data|stringData|bundle)$'
   age: age1en2d87t5lf77yfs39ehjzks63qrgthcfhg8dlkpum4lss50jjc0qkev7us
