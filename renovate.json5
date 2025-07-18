@@ -1,46 +1,50 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:recommended"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'config:recommended',
   ],
-  "labels": ["skip-verify-changelog"],
-  "flux": {
-    "fileMatch": [
-        "(helmrelease|helmrepository)\\.yaml$"
-    ]
+  labels: [
+    'skip-verify-changelog',
+  ],
+  flux: {
+    managerFilePatterns: [
+      '/(helmrelease|helmrepository)\\.yaml$/',
+    ],
   },
-  "packageRules": [
+  packageRules: [
     {
-      "matchPackageNames": ["*"],
-      "matchManagers": ["regex"],
-      "additionalBranchPrefix": "{{baseDir}}-",
-      "groupName": "{{baseDir}}",
-      "commitMessageTopic": "{{depName}}",
-    }
+      matchPackageNames: [
+        '*',
+      ],
+      matchManagers: [
+        'custom.regex',
+      ],
+      additionalBranchPrefix: '{{packageFileDir}}-',
+      groupName: '{{packageFileDir}}',
+      commitMessageTopic: '{{depName}}',
+    },
   ],
-  "customManagers": [
+  customManagers: [
     {
-      // Supports various formats where a comment with `renovate: ${REPO_NAME}` is on the line
-      // before the version string line
-      "customType": "regex",
-      "fileMatch": [
-        ".*y[a]?ml$",
+      customType: 'regex',
+      managerFilePatterns: [
+        '/.*y[a]?ml$/',
       ],
-      "matchStrings": [
-        "renovate: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
-        "renovate: (?<depName>.*)\n(.+)\\/releases\\/download\\/v?(?<currentValue>.+)\\/.*",
-        "renovate: (?<depName>.*)\n(.+)=v?(?<currentValue>\\S+)\n",
-        "renovate: (?<depName>.*)\n(.+)VERSION=v?(?<currentValue>.+)\\/.*",
-        "renovate: (?<depName>.*)\n(\\s)*version: v?(?<currentValue>.*?)\n",
-        "renovate: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n",
-        "renovate: (?<depName>.*)\n(\\s*)default: \"?.+:v?(?<currentValue>.*?)(-debug)?\"?\n",
-        "renovate: (?<depName>.*)\n(\\s*)image: \"?.+:v?(?<currentValue>.*?)\"?\n",
-        "renovate: (?<depName>.*)\n(\\s)*([\\w|_]+)release:(\\s)*v?(?<currentValue>.*?)(\\s)*\n",
-        "renovate: (?<depName>.*)\n(.+)VERSION: v?(?<currentValue>.+)\n",
-        "renovate: (?<depName>.*)\n(.+): v?(?<currentValue>.+)\n",
+      matchStrings: [
+        'renovate: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n',
+        'renovate: (?<depName>.*)\n(.+)\\/releases\\/download\\/v?(?<currentValue>.+)\\/.*',
+        'renovate: (?<depName>.*)\n(.+)=v?(?<currentValue>\\S+)\n',
+        'renovate: (?<depName>.*)\n(.+)VERSION=v?(?<currentValue>.+)\\/.*',
+        'renovate: (?<depName>.*)\n(\\s)*version: v?(?<currentValue>.*?)\n',
+        'renovate: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n',
+        'renovate: (?<depName>.*)\n(\\s*)default: "?.+:v?(?<currentValue>.*?)(-debug)?"?\n',
+        'renovate: (?<depName>.*)\n(\\s*)image: "?.+:v?(?<currentValue>.*?)"?\n',
+        'renovate: (?<depName>.*)\n(\\s)*([\\w|_]+)release:(\\s)*v?(?<currentValue>.*?)(\\s)*\n',
+        'renovate: (?<depName>.*)\n(.+)VERSION: v?(?<currentValue>.+)\n',
+        'renovate: (?<depName>.*)\n(.+): v?(?<currentValue>.+)\n',
       ],
-      "datasourceTemplate": "github-releases",
-      "extractVersionTemplate": "^\"?v?(?<version>.*)\"?$"
-    }
-  ]
+      datasourceTemplate: 'github-releases',
+      extractVersionTemplate: '^"?v?(?<version>.*)"?$',
+    },
+  ],
 }
