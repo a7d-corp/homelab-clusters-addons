@@ -2,20 +2,29 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base/atlantis/
+  - atlantis/helmrelease-version.yaml
   - atlantis/namespace-atlantis.yaml
   - atlantis/secret-atlantis-remote-credentials.yaml
   - atlantis/secret-atlantis-vault-credentials.yaml
   - atlantis/secret-atlantis-vcs-credentials.yaml
   - ../base/descheduler/
+  - descheduler/helmrelease-version.yaml
   - ../base/echo-server/
+  - echo-server/helmrelease-version.yaml
   - ../base/goldilocks/
+  - goldilocks/helmrelease-version.yaml
   - ../base/homepage/
+  - homepage/helmrelease-version.yaml
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
   - ../base/kube-prometheus-stack/
+  - kube-prometheus-stack/helmrelease-version.yaml
   - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
   - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
   - ../base/metrics-server/
+  - metrics-server/helmrelease-version.yaml
   - ../base/octopus-energy/
   - ../base/reflector/
+  - reflector/helmrelease-version.yaml
   - ../base/vertical-pod-autoscaler/
+  - vertical-pod-autoscaler/helmrelease-version.yaml

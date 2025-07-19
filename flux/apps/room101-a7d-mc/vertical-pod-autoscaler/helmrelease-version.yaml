@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vertical-pod-autoscaler
+spec:
+  chart:
+    spec:
+      # renovate: kubernetes/autoscaler
+      version: 4.7.2

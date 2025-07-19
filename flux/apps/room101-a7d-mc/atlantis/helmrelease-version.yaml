@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: atlantis
+spec:
+  chart:
+    spec:
+      # renovate: runatlantis/atlantis
+      version: 5.18.0
