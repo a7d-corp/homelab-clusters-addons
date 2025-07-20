@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: kyverno-test
+  namespace: kyverno
+  labels:
+    prometheus.io/scrape: "true"
+spec:
+  namespaceSelector:
+    matchNames:
+      - kyverno
+  selector:
+    matchExpressions:
+      - key: app.kubernetes.io/part-of
+        operator: In
+        values:
+          - kyverno
+      - key: app.kubernetes.io/component
+        operator: In
+        values:
+          - background-controller
+  podMetricsEndpoints:
+    - port: metrics
