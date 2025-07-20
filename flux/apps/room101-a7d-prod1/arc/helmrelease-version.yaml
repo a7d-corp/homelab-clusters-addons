@@ -6,4 +6,4 @@ spec:
   chart:
     spec:
       # renovate: actions/actions-runner-controller
-      version: '0.12.1'
+      version: 0.27.6
