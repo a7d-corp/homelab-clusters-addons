@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: homepage
+spec:
+  chart:
+    spec:
+      # renovate: gethomepage/homepage
+      version: 2.1.0

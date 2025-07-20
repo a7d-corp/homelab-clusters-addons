@@ -1,0 +1,10 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      # renovate: prometheus-operator/kube-prometheus
+      version: 70.10.0

@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: arc-controller
+spec:
+  chart:
+    spec:
+      # renovate: actions/actions-runner-controller
+      version: '0.12.1'

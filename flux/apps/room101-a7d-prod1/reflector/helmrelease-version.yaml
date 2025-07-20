@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: reflector
+spec:
+  chart:
+    spec:
+      # renovate: emberstack/kubernetes-reflector
+      version: 9.1.22

@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: robusta
+  namespace: robusta
+spec:
+  chart:
+    spec:
+      chart: robusta
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: robusta
+      version: '>=0.22.0 <1.0.0'
+  interval: 10m0s
+  releaseName: robusta
+  values:
+    clusterName: room101-a7d-mc # NOTE - adjust the clusterName when adding additional clusters
+    globalConfig:
+      signing_key: ec2ef5d1-f50d-4251-8cc0-d3b255251a3f
+      account_id: ce11f8dd-c648-4d56-9087-17bfcdbab319
+    sinksConfig:
+      - robusta_sink:
+          name: robusta_ui_sink
+          token: eyJhY2NvdW50X2lkIjogImNlMTFmOGRkLWM2NDgtNGQ1Ni05MDg3LTE3YmZjZGJhYjMxOSIsICJhcGlfa2V5IjogImV5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUp5YjJ4bElqb2lZVzV2YmlJc0ltbGhkQ0k2TVRZeU5ERTNNalF5TkN3aVpYaHdJam94T1RNNU56UTROREkwZlEuaFJMdjZQQW54MWNhdkR3bC1pWXlnQXJINHFBMERWSFluckQ3MUFzcXFQdyIsICJzdG9yZV91cmwiOiAiaHR0cHM6Ly94dnlocG94Zm10cHVxcWV5cWtzby5zdXBhYmFzZS5jbyIsICJlbWFpbCI6ICJhcGl1c2VyLWE3ZC1jb3JwLTQ5MjcwOUByb2J1c3RhLmRldiIsICJwYXNzd29yZCI6ICI2NDMwMGQzZi1lMTIxLTRlYjQtODA2YS01YTFjYzEyNWU3OWMifQ==
+    enablePrometheusStack: false
+    enablePlatformPlaybooks: true
+    runner:
+      sendAdditionalTelemetry: true
+    enableHolmesGPT: true
+    enabledManagedConfiguration: true
+    holmes:
+      additionalEnvVars:
+        - name: ROBUSTA_AI
+          value: "true"

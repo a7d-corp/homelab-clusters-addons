@@ -1,0 +1,9 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: goldilocks
+spec:
+  chart:
+    spec:
+      # renovate: FairwindsOps/goldilocks
+      version: 9.0.2
