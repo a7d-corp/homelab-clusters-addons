@@ -2,13 +2,34 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base/actions-runner-controller/
-  - arc/helmrelease-version.yaml
 #  - arc/secret-arc-runners-github-auth.yaml
   - ../base/descheduler/
-  - descheduler/helmrelease-version.yaml
   - ../base/echo-server/
-  - echo-server/helmrelease-version.yaml
   - ../base/reflector/
-  - reflector/helmrelease-version.yaml
   - ../base/tofu-controller/
-  - tofu-controller/helmrelease-version.yaml
+patches:
+  - path: arc/helmrelease-version.yaml
+    target:
+      group: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: arc-controller
+  - path: descheduler/helmrelease-version.yaml
+    target:
+      group: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: descheduler
+  - path: echo-server/helmrelease-version.yaml
+    target:
+      group: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: echo-server
+  - path: reflector/helmrelease-version.yaml
+    target:
+      group: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: reflector
+  - path: tofu-controller/helmrelease-version.yaml
+    target:
+      group: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: tofu-controller
