@@ -11,6 +11,5 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: metrics-server
-      version: 0.0.0
   interval: 10m0s
   releaseName: metrics-server
