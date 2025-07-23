@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: kubernetes/autoscaler
+      # helmchart: kubernetes/autoscaler
       version: 4.7.2

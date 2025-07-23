@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: Ealenn/Echo-Server
+      # helmchart: Ealenn/Echo-Server
       version: 0.5.0

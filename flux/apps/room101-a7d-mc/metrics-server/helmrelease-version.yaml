@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: kubernetes-sigs/metrics-server
+      # helmchart: kubernetes-sigs/metrics-server
       version: 3.12.2

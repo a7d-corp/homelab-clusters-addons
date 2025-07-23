@@ -6,11 +6,6 @@
   labels: [
     'skip-verify-changelog',
   ],
-  flux: {
-    managerFilePatterns: [
-      '/(helmrelease|helmrepository)\\.yaml$/',
-    ],
-  },
   packageRules: [
     {
       matchPackageNames: [
@@ -44,6 +39,18 @@
         'renovate: (?<depName>.*)\n(.+): v?(?<currentValue>.+)\n',
       ],
       datasourceTemplate: 'github-releases',
+      extractVersionTemplate: '^"?v?(?<version>.*)"?$',
+    },
+    {
+      customType: 'regex',
+      managerFilePatterns: [
+        'helmrelease-version.yaml$'
+      ],
+      matchStrings: [
+        'helmchart: (?<depName>.*)\n(\\s)*version: v?(?<currentValue>.*?)\n',
+        'helmchart: (?<depName>.*)\n(\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n'
+      ],
+      datasourceTemplate: 'helm',
       extractVersionTemplate: '^"?v?(?<version>.*)"?$',
     },
   ],

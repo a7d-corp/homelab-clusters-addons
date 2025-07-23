@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: FairwindsOps/goldilocks
+      # helmchart: FairwindsOps/goldilocks
       version: 9.0.2

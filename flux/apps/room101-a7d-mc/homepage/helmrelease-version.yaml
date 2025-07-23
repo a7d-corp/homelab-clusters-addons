@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: gethomepage/homepage
+      # helmchart: gethomepage/homepage
       version: 2.1.0

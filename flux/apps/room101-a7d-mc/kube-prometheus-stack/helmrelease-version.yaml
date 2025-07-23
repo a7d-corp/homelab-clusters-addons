@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: prometheus-operator/kube-prometheus
+      # helmchart: prometheus-operator/kube-prometheus
       version: 70.10.0

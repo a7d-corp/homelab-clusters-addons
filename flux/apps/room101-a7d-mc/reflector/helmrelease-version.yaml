@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: emberstack/kubernetes-reflector
+      # helmchart: emberstack/kubernetes-reflector
       version: 9.1.22

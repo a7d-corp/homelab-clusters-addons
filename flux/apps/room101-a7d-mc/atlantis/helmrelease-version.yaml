@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: runatlantis/atlantis
+      # helmchart: runatlantis/atlantis
       version: 5.18.0

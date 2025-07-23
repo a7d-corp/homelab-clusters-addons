@@ -6,5 +6,5 @@ metadata:
 spec:
   chart:
     spec:
-      # renovate: flux-iac/tofu-controller
+      # helmchart: flux-iac/tofu-controller
       version: '0.16.0-rc.5'
