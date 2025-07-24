@@ -47,10 +47,11 @@
         'helmrelease-version.yaml$'
       ],
       matchStrings: [
-        'helmchart: (?<depName>.*)\n(\\s)*version: v?(?<currentValue>.*?)\n',
-        'helmchart: (?<depName>.*)\n(\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n'
+        // # helmchart: datasource=helm chartname=atlantis url=https://runatlantis.github.io/helm-charts/atlantis
+        // version: 5.18.0
+        'helmchart:\\s+datasource=(?<datasource>\\w+)\\s+chartname=(?<depName>\\w+)\\s+url=(?<registryUrl>\\S+)\\s*\\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\\n'
       ],
-      datasourceTemplate: 'helm',
+      datasourceTemplate: "{{ datasource }}",
       extractVersionTemplate: '^"?v?(?<version>.*)"?$',
     },
   ],
