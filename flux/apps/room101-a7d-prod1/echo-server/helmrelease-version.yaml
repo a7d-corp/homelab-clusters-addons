@@ -6,5 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      # helmchart: Ealenn/Echo-Server
+      # renovate: datasource=helm
+      # chartname=echo-server
+      # url=https://ealenn.github.io/charts
       version: 0.5.0

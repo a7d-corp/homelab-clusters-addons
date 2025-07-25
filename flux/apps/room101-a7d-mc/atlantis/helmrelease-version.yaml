@@ -6,5 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      # helmchart: datasource=helm chartname=atlantis url=https://runatlantis.github.io/helm-charts/atlantis
+      # renovate: datasource=helm
+      # chartname=atlantis
+      # url=https://runatlantis.github.io/helm-charts
       version: 5.18.0

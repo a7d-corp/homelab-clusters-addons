@@ -6,5 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      # helmchart: flux-iac/tofu-controller
+      # renovate: datasource=helm
+      # chartname=tofu-controller
+      # url=https://flux-iac.github.io/tofu-controller/
       version: '0.16.0-rc.5'
