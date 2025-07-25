@@ -9,4 +9,4 @@ spec:
       # renovate: datasource=helm
       # chartname=vpa
       # url=https://charts.fairwinds.com/stable
-      version: 4.7.2
+      version: 4.8.0
