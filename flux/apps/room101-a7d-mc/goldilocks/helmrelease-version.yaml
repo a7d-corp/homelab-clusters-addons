@@ -9,4 +9,4 @@ spec:
       # renovate: datasource=helm
       # chartname=goldilocks
       # url=https://charts.fairwinds.com/stable
-      version: 9.0.2
+      version: 9.2.0
