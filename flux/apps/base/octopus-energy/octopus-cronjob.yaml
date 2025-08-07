@@ -23,7 +23,7 @@ spec:
               value: ${OCTOPLUS_CLOUDFLARE_ZONE}
             - name: CLOUDFLARE_APIKEY
               value: ${OCTOPLUS_CLOUDFLARE_APIKEY}
-            image: docker.io/mintel/docker-alpine-bash-curl-jq:2.2.0
+            image: ghcr.io/a7d-corp/docker-alpine-bash-curl-jq:latest
             name: claim
             resources:
               limits:
@@ -46,7 +46,7 @@ spec:
               echo "Sleeping for $SLEEP seconds"
               sleep $SLEEP
               echo "Done sleeping"
-            image: docker.io/mintel/docker-alpine-bash-curl-jq:2.2.0
+            image: ghcr.io/a7d-corp/docker-alpine-bash-curl-jq:latest
             name: sleeper
             resources:
               limits:
