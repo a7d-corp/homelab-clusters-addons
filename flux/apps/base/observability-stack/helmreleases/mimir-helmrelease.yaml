@@ -1,0 +1,56 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+spec:
+  chart:
+    spec:
+      chart: mimir-distributed
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  interval: 10m0s
+  releaseName: mimir
+  values:
+    ingester:
+      replicas: 2
+    compactor:
+      persistentVolume:
+        size: 10Gi
+    ingester:
+      replicas: 2
+      persistentVolume:
+        size: 25Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - ingester
+              topologyKey: 'kubernetes.io/hostname'
+    store_gateway:
+      persistentVolume:
+        size: 5Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - store-gateway
+              topologyKey: 'kubernetes.io/hostname'
+    memcachedExporter:
+      enabled: false
+    minio:
+      persistence:
+        size: 20Gi
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi

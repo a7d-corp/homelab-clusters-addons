@@ -1,0 +1,12 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+  namespace: monitoring
+spec:
+  chart:
+    spec:
+      # renovate: datasource=helm
+      # chartname=mimir-distributed
+      # url=https://grafana.github.io/helm-charts
+      version: 5.7.0
