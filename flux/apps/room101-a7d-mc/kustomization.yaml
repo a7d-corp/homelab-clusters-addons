@@ -16,6 +16,8 @@ resources:
   - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
   - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
   - ../base/metrics-server/
+  - ../base/minio-operator/
+  - minio-operator/minio-operator-namespace.yaml
   - ../base/octopus-energy/
   - ../base/reflector/
   - ../base/vertical-pod-autoscaler/
@@ -27,5 +29,6 @@ patches:
   - path: homepage/helmrelease-version.yaml
   - path: kube-prometheus-stack/helmrelease-version.yaml
   - path: metrics-server/helmrelease-version.yaml
+  - path: minio-operator/helmrelease-version.yaml
   - path: reflector/helmrelease-version.yaml
   - path: vertical-pod-autoscaler/helmrelease-version.yaml
