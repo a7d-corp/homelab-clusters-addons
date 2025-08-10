@@ -15,6 +15,7 @@ resources:
   - ../base/metrics-server/
   - ../base/minio-operator/
   - minio-operator/minio-operator-namespace.yaml
+  - ../base/observability-stack/
   - ../base/octopus-energy/
   - ../base/reflector/
   - ../base/vertical-pod-autoscaler/
