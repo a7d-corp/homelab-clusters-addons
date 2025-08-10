@@ -13,8 +13,6 @@ spec:
   interval: 10m0s
   releaseName: mimir
   values:
-    ingester:
-      replicas: 2
     compactor:
       persistentVolume:
         size: 10Gi
