@@ -4,4 +4,5 @@ namespace: monitoring
 resources:
   - helmrepositories/grafana-helmrepository.yaml
   - helmreleases/mimir-helmrelease.yaml
+  - kyverno-policy-schedule-on-control-plane-nodes.yaml
   - monitoring-namespace.yaml
