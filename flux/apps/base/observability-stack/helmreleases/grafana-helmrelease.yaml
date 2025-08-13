@@ -64,3 +64,21 @@ spec:
       - effect: NoSchedule
         key: node-role.kubernetes.io/control-plane
         operator: Exists
+    alerting:
+      contactpoints.yaml:
+        secret:
+          apiVersion: 1
+          contactPoints:
+            - orgId: 1
+              name: pagerduty
+              receivers:
+                - uid: pagerduty
+                  type: pagerduty
+                  settings:
+                    integrationKey: ${ALERTMANAGER_PAGERDUTY_INTEGRATION_KEY}
+                    severity: critical
+                    class: ping failure
+                    component: Grafana
+                    group: app-stack
+                    summary: |
+                      {{ `{{ include "default.message" . }}` }}
