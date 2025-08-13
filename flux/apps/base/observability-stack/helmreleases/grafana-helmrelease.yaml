@@ -1,0 +1,66 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana
+spec:
+  chart:
+    spec:
+      chart: grafana
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+  interval: 10m0s
+  releaseName: grafana
+  values:
+    defaultDashboardsTimezone: "Europe/London"
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+        - name: Mimir
+          type: prometheus
+          url: http://mimir-nginx.monitoring.svc.cluster.local/prometheus
+          access: proxy
+          uid: mimir-room101-a7d-mc
+          isDefault: true
+    envFromSecret: grafana-oauth-secrets
+    admin:
+      existingSecret: grafana-admin-credentials
+      userKey: admin-user
+      passwordKey: admin-password
+    grafana.ini:
+      auth.github:
+        enabled: true
+        client_id: $__env{GRAFANA_GITHUB_CLIENT_ID}
+        client_secret: $__env{GRAFANA_GITHUB_CLIENT_SECRET}
+        allowed_organizations: ['a7d-corp', 'simonweald']
+        role_attribute_path: "[login=='glitchcrab'][0] && 'GrafanaAdmin' || 'Viewer'"
+        allow_sign_up: false
+        auth_url: https://github.com/login/oauth/authorize
+        token_url: https://github.com/login/oauth/access_token
+        api_url: https://api.github.com/user
+    ingress:
+      enabled: true
+      ingressClassName: ${INGRESS_CLASS}
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+        external-dns.alpha.kubernetes.io/hostname: grafana.${FQDN_BASE}
+        external-dns.alpha.kubernetes.io/target: ${EXTERNAL_FQDN_TARGET}
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/auth-signin: ${OAUTH_A7D_START}
+        nginx.ingress.kubernetes.io/auth-url: ${OAUTH_A7D_AUTH}
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - grafana.${FQDN_BASE}
+      path: /
+      tls:
+        - secretName: grafana-general-tls
+          hosts:
+            - grafana.${FQDN_BASE}
+    persistence:
+      enabled: true
+    tolerations:
+      - effect: NoSchedule
+        key: node-role.kubernetes.io/control-plane
+        operator: Exists
