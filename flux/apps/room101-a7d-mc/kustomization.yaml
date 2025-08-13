@@ -29,6 +29,7 @@ patches:
   - path: homepage/helmrelease-version.yaml
   - path: metrics-server/helmrelease-version.yaml
   - path: minio-operator/helmrelease-version.yaml
+  - path: observability-stack/alloy/helmrelease-version.yaml
   - path: observability-stack/grafana/helmrelease-version.yaml
   - path: observability-stack/mimir/helmrelease-version.yaml
   - path: reflector/helmrelease-version.yaml
