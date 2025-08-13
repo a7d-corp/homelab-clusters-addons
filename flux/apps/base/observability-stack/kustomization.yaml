@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: monitoring
 resources:
   - helmrepositories/grafana-helmrepository.yaml
+  - helmreleases/alloy-helmrelease.yaml
   - helmreleases/grafana-helmrelease.yaml
   - helmreleases/mimir-helmrelease.yaml
   - kyverno-policy-schedule-on-control-plane-nodes.yaml
