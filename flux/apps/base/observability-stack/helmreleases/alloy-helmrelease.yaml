@@ -25,7 +25,5 @@ spec:
       enabled: true
     alloy-metrics:
       enabled: true
-    alloy-logs:
-      enabled: true
     alloy-singleton:
       enabled: true
