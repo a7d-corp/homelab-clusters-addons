@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: monitoring
+resources:
+  - ../../components/helmrepositories/grafana-helmrepository.yaml
+  - ../../components/helmreleases/grafana-helmrelease.yaml
+  - ../../components/helmreleases/mimir-helmrelease.yaml
+  - ../../components/config/kyverno-policy-schedule-on-control-plane-nodes.yaml
+  - ../../components/config/monitoring-namespace.yaml
