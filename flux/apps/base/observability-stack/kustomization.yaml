@@ -6,5 +6,5 @@ resources:
   - helmreleases/alloy-helmrelease.yaml
   - helmreleases/grafana-helmrelease.yaml
   - helmreleases/mimir-helmrelease.yaml
-  - kyverno-policy-schedule-on-control-plane-nodes.yaml
-  - monitoring-namespace.yaml
+  - config/kyverno-policy-schedule-on-control-plane-nodes.yaml
+  - config/monitoring-namespace.yaml
