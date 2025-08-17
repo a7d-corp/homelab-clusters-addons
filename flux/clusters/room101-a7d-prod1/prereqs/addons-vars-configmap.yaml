@@ -4,6 +4,7 @@ metadata:
   name: homelab-clusters-addons-vars
   namespace: flux-system
 data:
+  CLUSTER_NAME: room101-a7d-prod1
   EXTERNAL_FQDN_TARGET: lab.a7d.dev
   INTERNAL_FQDN_TARGET: 172.27.0.94
   FQDN_BASE: room101-a7d-prod1.lab.a7d.dev
