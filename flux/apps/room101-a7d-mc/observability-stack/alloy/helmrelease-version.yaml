@@ -7,6 +7,6 @@ spec:
   chart:
     spec:
       # renovate: datasource=helm
-      # chartname=alloy
+      # chartname=k8s-monitoring
       # url=https://grafana.github.io/helm-charts
-      version: 1.2.1
+      version: 3.2.5
