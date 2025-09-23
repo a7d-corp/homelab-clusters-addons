@@ -9,4 +9,4 @@ spec:
       # renovate: datasource=helm
       # chartname=atlantis
       # url=https://runatlantis.github.io/helm-charts
-      version: 5.18.2
+      version: 5.19.0
