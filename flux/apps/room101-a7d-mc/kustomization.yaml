@@ -12,9 +12,9 @@ resources:
   - ../base/homepage/
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
-#  - ../base/kube-prometheus-stack/
-#  - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
-#  - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
+  - ../base/kube-prometheus-stack/
+  - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
+  - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
   - ../base/metrics-server/
  # - ../base/minio-operator/
  # - minio-operator/minio-operator-namespace.yaml
@@ -31,6 +31,7 @@ patches:
   - path: echo-server/helmrelease-version.yaml
   - path: goldilocks/helmrelease-version.yaml
   - path: homepage/helmrelease-version.yaml
+  - path: kube-prometheus-stack/helmrelease-version.yaml
   - path: metrics-server/helmrelease-version.yaml
  # - path: minio-operator/helmrelease-version.yaml
  # - path: observability-stack/alloy/helmrelease-version.yaml
