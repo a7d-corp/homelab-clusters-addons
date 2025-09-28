@@ -12,13 +12,16 @@ resources:
   - ../base/homepage/
   - homepage/homepage-namespace.yaml
   - homepage/homepage-secret.yaml
+#  - ../base/kube-prometheus-stack/
+#  - kube-prometheus-stack/secret-grafana-admin-credentials.yaml
+#  - kube-prometheus-stack/secret-grafana-oauth-secrets.yaml
   - ../base/metrics-server/
-  - ../base/minio-operator/
-  - minio-operator/minio-operator-namespace.yaml
-  - ../base/observability-stack/deploy/receive
-  - ../base/observability-stack/deploy/send
-  - observability-stack/grafana/secret-grafana-admin-credentials.yaml
-  - observability-stack/grafana/secret-grafana-oauth-secrets.yaml
+ # - ../base/minio-operator/
+ # - minio-operator/minio-operator-namespace.yaml
+ # - ../base/observability-stack/deploy/receive
+ # - ../base/observability-stack/deploy/send
+ # - observability-stack/grafana/secret-grafana-admin-credentials.yaml
+ # - observability-stack/grafana/secret-grafana-oauth-secrets.yaml
   - ../base/octopus-energy/
   - ../base/reflector/
   - ../base/vertical-pod-autoscaler/
@@ -29,9 +32,9 @@ patches:
   - path: goldilocks/helmrelease-version.yaml
   - path: homepage/helmrelease-version.yaml
   - path: metrics-server/helmrelease-version.yaml
-  - path: minio-operator/helmrelease-version.yaml
-  - path: observability-stack/alloy/helmrelease-version.yaml
-  - path: observability-stack/grafana/helmrelease-version.yaml
-  - path: observability-stack/mimir/helmrelease-version.yaml
+ # - path: minio-operator/helmrelease-version.yaml
+ # - path: observability-stack/alloy/helmrelease-version.yaml
+ # - path: observability-stack/grafana/helmrelease-version.yaml
+ # - path: observability-stack/mimir/helmrelease-version.yaml
   - path: reflector/helmrelease-version.yaml
   - path: vertical-pod-autoscaler/helmrelease-version.yaml
